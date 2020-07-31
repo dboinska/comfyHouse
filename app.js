@@ -1,6 +1,4 @@
-import dotenv from 'dotenv';
-dotenv.config();
-
+require('dotenv').config();
 
 const client = contentful.createClient({
     // This is the space ID. A space is like a project folder in Contentful terms
