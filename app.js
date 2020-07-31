@@ -1,4 +1,6 @@
-require('dotenv').config();
+if(process.env.NODE_ENV != 'production') {
+    require('dotenv').config();
+}
 
 const client = contentful.createClient({
     // This is the space ID. A space is like a project folder in Contentful terms
@@ -31,10 +33,11 @@ class Products {
             let contentful = await client.getEntries();
                 console.log(contentful);
             
-            let result = await fetch('./products.json');
-            let data = await result.json();
+            //let result = await fetch('./products.json');
+            //let data = await result.json();
 
-            let products = [...contentful.items, ...data.items];
+            //let products = [...contentful.items, ...data.items];
+            let products = [...contentful.items];
             products = products.map(item => {
                 const {title, price} = item.fields;
                 const {id} = item.sys;
